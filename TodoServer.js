@@ -72,11 +72,13 @@ app.delete("/todos/:id",(req,res) => {
     if (!(todoid <= Todos.length)){
         res.json({message:"Sorry the following todo doesnt exist!!"})
     };
-    Todos.filter((x)=>{
-        if (todoid == x.todoid){
-            return false;
+    Todos = Todos.filter((x)=>{
+        if (!(todoid == x.todoid)){
+            return true;
         }
-        return true;
+    })
+    res.json({
+        Message:"Todo deleted successfully"
     })
 })
 
